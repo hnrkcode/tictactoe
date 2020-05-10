@@ -1,0 +1,12 @@
+#tictactoe {
+  display: grid;
+  justify-content: center; 
+  grid-template-columns: repeat(3, 250px);
+  grid-template-rows: repeat(3, 250px);
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
+#tictactoe > div {
+  border: medium solid black;
+}
