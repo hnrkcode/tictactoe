@@ -11,6 +11,19 @@ const score = {
 
 let cellsLeft = size;
 
+const toggleOverlay = (text) => {
+  const overlay = document.getElementById("overlay");
+  const overlayText = document.getElementById("overlay-text");
+
+  overlayText.textContent = text;
+  overlay.classList.toggle("overlay");
+
+  setTimeout(() => {
+    overlayText.textContent = "";
+    overlay.classList.toggle("overlay");
+  }, 3000);
+};
+
 const setScore = () => {
   playerOneScore.innerText = score.playerOne;
   playerTwoScore.innerText = score.playerTwo;
@@ -141,15 +154,15 @@ const clickedCell = (event) => {
         score.playerTwo++;
       }
       setScore();
+      toggleOverlay(`${getActivePlayer()} won!`.toUpperCase());
       resetGame();
-    }
-
     // Check if it's a draw.
-    if (isDraw()) {
+    } else if (isDraw()) {
+      toggleOverlay("IT'S A DRAW!");
       resetGame();
+    } else {
+      switchActivePlayer();
     }
-
-    switchActivePlayer();
   }
 };
 
