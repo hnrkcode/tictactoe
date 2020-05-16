@@ -1,8 +1,20 @@
 const grid = document.querySelector(".grid");
 const activePlayer = document.getElementById("active-player");
+const playerOneScore = document.getElementById("score-player-one");
+const playerTwoScore = document.getElementById("score-player-two");
 const cells = [];
 const size = 9;
+const score = {
+  "playerOne": 0,
+  "playerTwo": 0
+};
+
 let cellsLeft = size;
+
+const setScore = () => {
+  playerOneScore.innerText = score.playerOne;
+  playerTwoScore.innerText = score.playerTwo;
+}
 
 const setActivePlayer = player => {
   activePlayer.textContent = player;
@@ -23,6 +35,9 @@ const switchActivePlayer = () => {
 const renderGrid = () => {
   // Initialize active player.
   setActivePlayer("Player 1");
+
+  // Initialize score.
+  setScore();
 
   // Render grid.
   for (let i = 0; i < size; i++) {
@@ -117,17 +132,24 @@ const clickedCell = (event) => {
     getActivePlayer() === "Player 1" ? classList.add("player1-clicked") : classList.add("player2-clicked");
     classList.remove("player1-hover", "player2-hover");
     cellsLeft--;
+
+    // Check if the player has won.
+    if (isVictory()) {
+      if (getActivePlayer() === "Player 1") {
+        score.playerOne++;
+      } else {
+        score.playerTwo++;
+      }
+      setScore();
+      resetGame();
+    }
+
+    // Check if it's a draw.
+    if (isDraw()) {
+      resetGame();
+    }
+
     switchActivePlayer();
-  }
-
-  // Check if the player has won.
-  if (isVictory()) {
-    resetGame();
-  }
-
-  // Check if it's a draw.
-  if (isDraw()) {
-    resetGame();
   }
 };
 

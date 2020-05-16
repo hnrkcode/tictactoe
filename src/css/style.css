@@ -1,10 +1,19 @@
+header {
+  text-align: center;
+}
+
+main {
+  margin: 0px 35% 0px 35%;
+}
+
 .grid {
   display: grid;
-  justify-content: center; 
-  grid-template-columns: repeat(3, 250px);
-  grid-template-rows: repeat(3, 250px);
+  /* justify-content: center;  */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   column-gap: 5px;
   row-gap: 5px;
+  height: 30vw;
 }
 
 .grid > div {
