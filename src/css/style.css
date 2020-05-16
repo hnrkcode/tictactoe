@@ -1,4 +1,4 @@
-#tictactoe {
+.grid {
   display: grid;
   justify-content: center; 
   grid-template-columns: repeat(3, 250px);
@@ -7,6 +7,22 @@
   row-gap: 5px;
 }
 
-#tictactoe > div {
+.grid > div {
   border: medium solid black;
+}
+
+.player1-hover {
+  background-color: blueviolet;
+}
+
+.player2-hover {
+  background-color:blue;
+}
+
+.player1-clicked {
+  background-color: blueviolet;
+}
+
+.player2-clicked {
+  background-color:blue;
 }
