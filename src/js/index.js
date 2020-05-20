@@ -178,53 +178,46 @@ const isDraw = () => {
 const clickedCell = (event) => {
   const classList = event.target.classList;
 
-  // Cell now belongs to the player that clicked on it.
-  if (
-    !classList.contains("player1-clicked") ||
-    !classList.contains("player2-clicked")
-  ) {
-    getActivePlayer() === "Player 1"
-      ? classList.add("player1-clicked")
-      : classList.add("player2-clicked");
-    classList.remove("player1-hover", "player2-hover");
-    cellsLeft--;
-
-    // Check if the player has won.
-    if (isVictory()) {
-      if (getActivePlayer() === "Player 1") {
-        score.playerOne++;
-      } else {
-        score.playerTwo++;
-      }
-      setScore();
-      toggleOverlay(`${getActivePlayer()} won!`.toUpperCase());
-      resetGame();
-      // Check if it's a draw.
-    } else if (isDraw()) {
-      toggleOverlay("IT'S A DRAW!");
-      resetGame();
-    } else {
-      switchActivePlayer();
-    }
-  }
-};
-
-grid.addEventListener("mouseover", (event) => {
-  toggleHoverEffect(event);
-});
-
-grid.addEventListener("mouseout", (event) => {
-  toggleHoverEffect(event);
-});
-
-grid.addEventListener("click", (event) => {
   cells.forEach((cell) => {
     // Do this if the clicked cell isn't taken.
     if (cell.belongsTo === null && cell.element === event.target) {
       cell.belongsTo = getActivePlayer();
-      clickedCell(event);
+
+      // Cell now belongs to the player that clicked on it.
+      if (
+        !classList.contains("player1-clicked") ||
+        !classList.contains("player2-clicked")
+      ) {
+        getActivePlayer() === "Player 1"
+          ? classList.add("player1-clicked")
+          : classList.add("player2-clicked");
+        classList.remove("player1-hover", "player2-hover");
+        cellsLeft--;
+
+        // Check if the player has won.
+        if (isVictory()) {
+          if (getActivePlayer() === "Player 1") {
+            score.playerOne++;
+          } else {
+            score.playerTwo++;
+          }
+          setScore();
+          toggleOverlay(`${getActivePlayer()} won!`.toUpperCase());
+          resetGame();
+          // Check if it's a draw.
+        } else if (isDraw()) {
+          toggleOverlay("IT'S A DRAW!");
+          resetGame();
+        } else {
+          switchActivePlayer();
+        }
+      }
     }
   });
-});
+};
+
+grid.addEventListener("mouseover", toggleHoverEffect);
+grid.addEventListener("mouseout", toggleHoverEffect);
+grid.addEventListener("click", clickedCell);
 
 renderGrid();
