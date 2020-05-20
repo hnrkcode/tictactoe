@@ -9,7 +9,13 @@ const score = {
   playerTwo: 0,
 };
 
-let cellsLeft = size;
+// The game is draw if all cells are used but no one has won.
+const isDraw = (cellArray) => {
+  return (
+    cellArray.map((cell) => cell.belongsTo).filter((cell) => cell === null)
+      .length === 0
+  );
+};
 
 const toggleOverlay = (text) => {
   const overlay = document.getElementById("overlay");
@@ -66,7 +72,6 @@ const renderGrid = () => {
 const resetGame = () => {
   grid.innerHTML = "";
   cells.length = 0;
-  cellsLeft = size;
   renderGrid();
 };
 
@@ -167,14 +172,6 @@ const isVictory = () => {
   return false;
 };
 
-const isDraw = () => {
-  if (cellsLeft === 0) {
-    return true;
-  }
-
-  return false;
-};
-
 const clickedCell = (event) => {
   const classList = event.target.classList;
 
@@ -192,7 +189,6 @@ const clickedCell = (event) => {
           ? classList.add("player1-clicked")
           : classList.add("player2-clicked");
         classList.remove("player1-hover", "player2-hover");
-        cellsLeft--;
 
         // Check if the player has won.
         if (isVictory()) {
@@ -205,7 +201,7 @@ const clickedCell = (event) => {
           toggleOverlay(`${getActivePlayer()} won!`.toUpperCase());
           resetGame();
           // Check if it's a draw.
-        } else if (isDraw()) {
+        } else if (isDraw(cells)) {
           toggleOverlay("IT'S A DRAW!");
           resetGame();
         } else {
@@ -214,6 +210,8 @@ const clickedCell = (event) => {
       }
     }
   });
+
+  console.log("cells", cells);
 };
 
 grid.addEventListener("mouseover", toggleHoverEffect);
