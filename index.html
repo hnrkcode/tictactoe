@@ -10,10 +10,22 @@
   <body>
     <div id="overlay"><div id="overlay-text"></div></div>
     <header>
-      <h1>TicTacToe</h1>
-      <h2>Active player: <span id="active-player"></span></h2>
-      <p>P1 SCORE: <span id="score-player-one"></span></p>
-      <p>P2 SCORE: <span id="score-player-two"></span></p>
+      <div class="info">
+        <div>
+          <h5><span>TicTacToe</span></h5>
+        </div>
+        <div>
+          <h5><span>Active</span></h5>
+          <h2><span id="active-player"></span></h2>
+        </div>
+        <div>
+          <h5><span>Score</span></h5>
+          <div id="score">
+            <div><p>P1: <span id="score-player-one"></span></p></div>
+            <div><p>P2: <span id="score-player-two"></span></p></div>
+          </div>
+        </div>
+      </div>
     </header>
     <main>
       <div class="grid"></div>

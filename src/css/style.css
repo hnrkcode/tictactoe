@@ -21,17 +21,44 @@
   -ms-transform: translate(-50%, -50%);
 }
 
+#score {
+  margin-top: -7%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 header {
+  margin: 5% 35% 0 35%;
   text-align: center;
 }
 
+.info {
+  display: grid;
+  column-gap: 5px;
+  row-gap: 5px;
+  font-size: 1.5vw;
+  margin-bottom: 5px;
+}
+
+.info > div {
+  border: medium solid black;
+  margin-top: 5%;
+}
+
+.info > div > h5 {
+  margin-top: -5%;
+}
+
+.info > div > h5 > span {
+  background:white;
+}
+
 main {
-  margin: 0px 35% 0px 35%;
+  margin: 2% 35% 0px 35%;
 }
 
 .grid {
   display: grid;
-  /* justify-content: center;  */
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   column-gap: 5px;
