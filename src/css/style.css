@@ -27,8 +27,12 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+#active-player {
+  margin-top: -2%;
+}
+
 header {
-  margin: 5% 35% 0 35%;
+  margin: 1% 35% 0 35%;
   text-align: center;
 }
 
